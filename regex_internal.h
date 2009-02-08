@@ -416,7 +416,14 @@ static unsigned int re_string_context_at (const re_string_t *input, int idx,
 #define re_string_skip_bytes(pstr,idx) ((pstr)->cur_idx += (idx))
 #define re_string_set_index(pstr,idx) ((pstr)->cur_idx = (idx))
 
-#include <alloca.h>
+#ifdef HAVE_ALLOCA_H
+# include <alloca.h>
+#endif
+
+#ifdef HAVE_MALLOC_H
+# include <malloc.h>
+#endif
+
 
 #ifndef _LIBC
 # if HAVE_ALLOCA
