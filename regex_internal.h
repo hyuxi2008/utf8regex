@@ -28,13 +28,13 @@
 #include <string.h>
 
 #if defined HAVE_LANGINFO_H || defined HAVE_LANGINFO_CODESET || defined _LIBC
-# include <langinfo.h>
+# include <utf8re-langinfo.h>
 #endif
 #if defined HAVE_LOCALE_H || defined _LIBC
-# include <locale.h>
+# include <utf8re-locale.h>
 #endif
 #if defined HAVE_WCHAR_H || defined _LIBC
-# include <wchar.h>
+# include <utf8re-wchar.h>
 #endif /* HAVE_WCHAR_H || _LIBC */
 #if defined HAVE_WCTYPE_H || defined _LIBC
 # include <wctype.h>
@@ -391,7 +391,7 @@ static reg_errcode_t re_string_realloc_buffers (re_string_t *pstr,
      internal_function;
 # ifdef RE_ENABLE_I18N
 static void build_wcs_buffer (re_string_t *pstr) internal_function;
-static int build_wcs_upper_buffer (re_string_t *pstr) internal_function;
+static reg_errcode_t build_wcs_upper_buffer (re_string_t *pstr) internal_function;
 # endif /* RE_ENABLE_I18N */
 static void build_upper_buffer (re_string_t *pstr) internal_function;
 static void re_string_translate_buffer (re_string_t *pstr) internal_function;
