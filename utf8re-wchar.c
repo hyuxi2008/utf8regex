@@ -1,4 +1,5 @@
 #include <errno.h>
+#include <stdbool.h>
 
 #include "utf8re-wchar.h"
 
@@ -24,6 +25,19 @@ static char utf8re_remaining[128] = {
   2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
   3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0,
 };
+
+static inline bool is_unicode_char(wchar_t ch)
+{
+  if (ch < 0 || ch >= 0x110000)
+    return false;
+  if (ch >= 0xd800 && ch < 0xe000) /* lone surrogates */
+    return false;
+  if (ch >= 0xfdd0 && ch < 0xfdf0) /* non-characters */
+    return false;
+  if ((ch & 0xfffe) == 0xfffe) /* non-characters */
+    return false;
+  return true;
+}
 
 size_t utf8re_mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps)
 {
@@ -84,10 +98,7 @@ size_t utf8re_mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps)
   }
   if (ps->remaining == 0)
   {
-    if (ps->wc >= 0x10ffff
-        || ps->wc == 0xfffe || ps->wc == 0xffff /* non-characters */
-        || (ps->wc >= 0xd800 && ps->wc <= 0xdfff) /* lone surrogates */
-    )
+    if (!is_unicode_char(ps->wc))
     {
       errno = EILSEQ;
       return (size_t) -1;
@@ -108,11 +119,7 @@ size_t utf8re_mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps)
 size_t utf8re_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
 {
   size_t bytes;
-  if (wc < 0
-      || wc >= 0x10ffff
-      || wc == 0xfffe || wc == 0xffff /* non-characters */
-      || (wc >= 0xd800 && wc <= 0xdfff) /* lone surrogates */
-  )
+  if (!is_unicode_char(wc))
   {
     errno = EILSEQ;
     return (size_t) -1;
