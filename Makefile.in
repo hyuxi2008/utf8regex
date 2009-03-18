@@ -1,23 +1,61 @@
+VERSION_INFO = 0:0:0
+EXPORTED_SYMBOLS = regcomp|regexec|regerror|regfree
+
 CC = @CC@
+INSTALL = @INSTALL@
+SHELL = @SHELL@
+
+LIBTOOL = @LIBTOOL@
+LTLINK.c = $(LIBTOOL) --mode=link $(LINK.c)
+LTCOMPILE.c = $(LIBTOOL) --mode=compile $(COMPILE.c)
+LTINSTALL = $(LIBTOOL) --mode=install $(INSTALL)
+
 CFLAGS = -I. @CFLAGS@
+LDFLAGS = @LDFLAGS@
+DLLFLAGS = -no-undefined -export-symbols-regex "$(EXPORTED_SYMBOLS)" -version-info $(VERSION_INFO) -rpath $(libdir)
+
 EXEEXT = @EXEEXT@
+
+prefix = @prefix@
+exec_prefix = @prefix@
+libdir = @libdir@
+includedir = @includedir@
+top_builddir = @top_builddir@
 
 H_FILES = $(wildcard *.h)
 C_FILES = $(wildcard reg*.c)
 O_FILES = regex.o utf8re-wchar.o
+LO_FILES = $(O_FILES:.o=.lo)
 
 .PHONY: all
-all: regex.o test$(EXEEXT)
+all: libutf8regex.la test$(EXEEXT)
 
 regex.o: $(C_FILES) $(H_FILES)
 
+%.lo: %.c
+	$(LTCOMPILE.c) $(^) -o $(@)
+
+libutf8regex.la: $(LO_FILES)
+	$(LTLINK.c) $(DLLFLAGS) $(^) -o $(@)
+
 test.o: test.c $(H_FILES)
 
-test$(EXEEXT): test.o $(O_FILES)
-	$(LINK.c) $(^) -o $(@)
+test$(EXEEXT): test.o libutf8regex.la
+	$(LTLINK.c) $(^) -o $(@)
+
+.PHONY: install
+install: libutf8regex.la
+	$(INSTALL) -d $(DESTDIR)$(libdir)
+	$(LTINSTALL) $(<) $(DESTDIR)$(libdir)/$(<)
 
 .PHONY: clean
 clean:
-	$(RM) *.o test$(EXEEXT)
+	$(RM) *.o *.la *.lo test$(EXEEXT)
+	$(RM) -R .libs/
+
+.PHONY: distclean
+distclean:
+	$(RM) Makefile config.log config.status
+	$(RM) -R autom4te.cache
 
 # vim:ts=4 sw=4 noet

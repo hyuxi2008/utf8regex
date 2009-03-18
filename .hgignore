@@ -1,0 +1,10 @@
+syntax: glob
+
+Makefile
+aclocal.m4
+config.guess
+config.sub
+configure
+install-sh
+libtool
+ltmain.sh
