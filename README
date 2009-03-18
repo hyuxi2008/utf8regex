@@ -1,0 +1,23 @@
+*utf8regex* is a `GNU libc`_ `regex library`_ port, which does not use the
+C-language `locale subsystem`_. Instead, UTF-8 encoding is used exclusively.
+
+Both the interface_ and the implementation_ should closely follow the POSIX
+specification.
+
+
+.. _GNU libc:
+   http://www.gnu.org/software/libc/
+
+.. _regex library:
+   http://www.gnu.org/software/libc/manual/html_node/Regular-Expressions.html
+
+.. _locale subsystem:
+   http://www.opengroup.org/onlinepubs/007908799/xsh/locale.h.html
+
+.. _interface:
+   http://www.opengroup.org/onlinepubs/007908799/xsh/regex.h.html
+
+.. _implementation:
+   http://www.opengroup.org/onlinepubs/007908799/xsh/regcomp.html
+
+.. vim:ts=3 sw=3 et ft=rst
