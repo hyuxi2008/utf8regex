@@ -3,8 +3,14 @@ syntax: glob
 Makefile
 aclocal.m4
 config.guess
+config.log
+config.status
 config.sub
 configure
 install-sh
 libtool
 ltmain.sh
+*.o
+*.lo
+*.la
+.libs
