@@ -17,13 +17,15 @@ int test_utf8()
   const char *regex = "^" C1 "[" C2 "][" C3 "][" C4 "]$";
   rc = regcomp(&preg, regex, REG_EXTENDED | REG_NOSUB);
   /* A match is expected for UTF-8 encoding *only*. */
-  if (rc != 0) {
+  if (rc != 0)
+  {
     errno = (rc == REG_ESPACE) ? ENOMEM : EINVAL;
     return -1;
   }
   rc = regexec(&preg, string, 0, NULL, 0);
   regfree(&preg);
-  if (rc != 0) {
+  if (rc != 0)
+  {
     errno = EILSEQ;
     return 1;
   }

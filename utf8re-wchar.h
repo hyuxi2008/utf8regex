@@ -20,7 +20,8 @@
 
 wint_t utf8re_btowc(int c);
 
-typedef struct {
+typedef struct
+{
   unsigned int remaining;
   unsigned int bytes;
   wchar_t wc;
