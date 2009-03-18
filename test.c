@@ -1,13 +1,18 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 #include "regex.h"
 
 #define C1 "a"
 #define C2 "\xce\xb1" /* GREEK SMALL LETTER ALPHA */
 #define C3 "\xe0\xa4\x85" /* DEVANAGARI LETTER A */
+#if WCHAR_MAX >= 0x10ffff
 #define C4 "\xf4\x80\x80\x80" /* Plane 15 Private Use, First */
+#else
+#define C4 "\xef\xbc\xa1" /* FULLWIDTH LATIN CAPITAL LETTER A */
+#endif
 
 int test_utf8()
 {
@@ -39,6 +44,9 @@ int test_utf8()
 
 int main(int argc, char **argv)
 {
+#if WCHAR_MAX < 0x10ffff
+  fprintf(stderr, "Warning: this system does not support the full Unicode range.\n");
+#endif
   int x = test_utf8();
   if (x != 0)
     perror(NULL);
