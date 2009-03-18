@@ -1,20 +1,23 @@
-CFLAGS = -I. -O2 -Wall
+CC = @CC@
+CFLAGS = -I. @CFLAGS@
+EXEEXT = @EXEEXT@
 
 H_FILES = $(wildcard *.h)
 C_FILES = $(wildcard reg*.c)
 O_FILES = regex.o utf8re-wchar.o
 
 .PHONY: all
-all: regex.o test
+all: regex.o test$(EXEEXT)
 
 regex.o: $(C_FILES) $(H_FILES)
 
 test.o: test.c $(H_FILES)
 
-test: test.o $(O_FILES)
+test$(EXEEXT): test.o $(O_FILES)
+	$(LINK.c) $(^) -o $(@)
 
 .PHONY: clean
 clean:
-	$(RM) *.o test
+	$(RM) *.o test$(EXEEXT)
 
 # vim:ts=4 sw=4 noet
