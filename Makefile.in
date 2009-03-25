@@ -46,9 +46,9 @@ test$(EXEEXT): test.o libutf8regex.la
 .PHONY: install
 install: libutf8regex.la
 	$(INSTALL) -d $(DESTDIR)$(libdir)
-	$(LTINSTALL) $(<) $(DESTDIR)$(libdir)/$(<)
+	$(LTINSTALL) -m 644 $(<) $(DESTDIR)$(libdir)/$(<)
 	$(INSTALL) -d $(DESTDIR)$(includedir)/utf8regex/
-	$(INSTALL) regex.h $(DESTDIR)$(includedir)/utf8regex/
+	$(INSTALL) -m 644 regex.h $(DESTDIR)$(includedir)/utf8regex/
 
 .PHONY: clean
 clean:
