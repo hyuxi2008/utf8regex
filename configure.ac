@@ -1,5 +1,6 @@
 AC_PREREQ(2.63)
 AC_INIT(utf8regex, 0.2.7, ubanus@users.sf.net)
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_LIBTOOL_WIN32_DLL
 
