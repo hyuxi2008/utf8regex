@@ -152,7 +152,7 @@ size_t utf8re_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
     {
       size_t i;
       s[0] = (0xff00 >> bytes) & 0xff;
-      for (i = bytes; i; i--)
+      for (i = bytes - 1; i; i--)
       {
         s[i] = 0x80 | (wc & 0x3f);
         wc >>= 6;
