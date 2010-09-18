@@ -1,5 +1,5 @@
 /* Extended regular expression matching and search library.
-   Copyright (C) 2002, 2003, 2004, 2005, 2007 Free Software Foundation, Inc.
+   Copyright (C) 2002-2005, 2007, 2008 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
    Contributed by Isamu Hasegawa <isamu@yamato.ibm.com>.
 
@@ -26,6 +26,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#if defined _LIBC
+# include <gnu/option-groups.h>
+#endif
 
 #if defined HAVE_LANGINFO_H || defined HAVE_LANGINFO_CODESET || defined _LIBC
 # include <langinfo.h>
@@ -116,6 +120,7 @@
 # define __wctype wctype
 # define __iswctype iswctype
 # define __btowc btowc
+# define __mbrtowc mbrtowc
 # define __mempcpy mempcpy
 # define __wcrtomb wcrtomb
 # define __regfree regfree
@@ -373,6 +378,13 @@ struct re_string_t
 };
 typedef struct re_string_t re_string_t;
 
+/* When OPTION_EGLIBC_LOCALE_CODE is disabled, this is always 1;
+   help the compiler make use of that fact.  */
+#if __OPTION_EGLIBC_LOCALE_CODE
+# define string_mb_cur_max(str) ((str)->mb_cur_max + 0)
+#else
+# define string_mb_cur_max(str) (1)
+#endif
 
 struct re_dfa_t;
 typedef struct re_dfa_t re_dfa_t;
@@ -391,7 +403,8 @@ static reg_errcode_t re_string_realloc_buffers (re_string_t *pstr,
      internal_function;
 # ifdef RE_ENABLE_I18N
 static void build_wcs_buffer (re_string_t *pstr) internal_function;
-static int build_wcs_upper_buffer (re_string_t *pstr) internal_function;
+static reg_errcode_t build_wcs_upper_buffer (re_string_t *pstr)
+  internal_function;
 # endif /* RE_ENABLE_I18N */
 static void build_upper_buffer (re_string_t *pstr) internal_function;
 static void re_string_translate_buffer (re_string_t *pstr) internal_function;
@@ -657,6 +670,14 @@ struct re_dfa_t
   __libc_lock_define (, lock)
 };
 
+/* When OPTION_EGLIBC_LOCALE_CODE is disabled, this is always 1;
+   help the compiler make use of that fact.  */
+#if __OPTION_EGLIBC_LOCALE_CODE
+# define dfa_mb_cur_max(dfa) ((dfa)->mb_cur_max + 0)
+#else
+# define dfa_mb_cur_max(dfa) (1)
+#endif
+
 #define re_node_set_init_empty(set) memset (set, '\0', sizeof (re_node_set))
 #define re_node_set_remove(set,id) \
   (re_node_set_remove_at (set, re_node_set_contains (set, id) - 1))
@@ -717,7 +738,7 @@ internal_function __attribute ((pure))
 re_string_char_size_at (const re_string_t *pstr, int idx)
 {
   int byte_idx;
-  if (pstr->mb_cur_max == 1)
+  if (string_mb_cur_max (pstr) == 1)
     return 1;
   for (byte_idx = 1; idx + byte_idx < pstr->valid_len; ++byte_idx)
     if (pstr->wcs[idx + byte_idx] != WEOF)
@@ -729,7 +750,7 @@ static inline wint_t
 internal_function __attribute ((pure))
 re_string_wchar_at (const re_string_t *pstr, int idx)
 {
-  if (pstr->mb_cur_max == 1)
+  if (string_mb_cur_max (pstr) == 1)
     return (wint_t) pstr->mbs[idx];
   return (wint_t) pstr->wcs[idx];
 }
