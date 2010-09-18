@@ -1,5 +1,5 @@
 /**
- * Copyright © 2009 Jakub Wilk <ubanus@users.sf.net>
+ * Copyright © 2009 Jakub Wilk <jwilk@jwilk.net>
  *
  * This library is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License version
