@@ -33,4 +33,7 @@
 #define HAVE_MBRTOWC 1
 #define HAVE_WCSCOLL 1
 
+#undef MAX
+#define MAX(a, b) ((a < b) ? (b) : (a))
+
 #endif
