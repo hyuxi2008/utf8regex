@@ -23,7 +23,6 @@
 #define _REGEX_H 1
 
 #include <sys/types.h>
-#include <gnu/option-groups.h>
 
 /* Allow the use in C++ code.  */
 #ifdef __cplusplus
@@ -160,7 +159,7 @@ typedef unsigned long int reg_syntax_t;
 # define RE_INVALID_INTERVAL_ORD (RE_DEBUG << 1)
 
 /* EGLIBC: Old regex implementation does not support these.  */
-# ifdef __OPTION_POSIX_REGEXP_GLIBC
+# if 1
 /* If this bit is set, then ignore case when matching.
    If not set, then case is significant.  */
 # define RE_ICASE (RE_INVALID_INTERVAL_ORD << 1)
@@ -234,7 +233,7 @@ extern reg_syntax_t re_syntax_options;
   (RE_CHAR_CLASSES | RE_DOT_NEWLINE      | RE_DOT_NOT_NULL		\
    | RE_INTERVALS  | RE_NO_EMPTY_RANGES)
 
-#ifdef __OPTION_POSIX_REGEXP_GLIBC
+#if 1
 #define RE_SYNTAX_POSIX_BASIC						\
   (_RE_SYNTAX_POSIX_COMMON | RE_BK_PLUS_QM | RE_CONTEXT_INVALID_DUP)
 #else
@@ -306,7 +305,7 @@ extern reg_syntax_t re_syntax_options;
 /* Like REG_NOTBOL, except for the end-of-line.  */
 #define REG_NOTEOL (1 << 1)
 
-#ifdef __OPTION_POSIX_REGEXP_GLIBC
+#if 1
 /* Use PMATCH[0] to delimit the start and end of the search in the
    buffer.  */
 #define REG_STARTEND (1 << 2)

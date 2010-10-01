@@ -36,4 +36,6 @@
 #undef MAX
 #define MAX(a, b) ((a < b) ? (b) : (a))
 
+#define __OPTION_EGLIBC_LOCALE_CODE 1
+
 #endif
