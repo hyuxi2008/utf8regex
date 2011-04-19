@@ -6,7 +6,7 @@ tmpdir=$(mktemp -d)
 version=$(grep AC_INIT configure.ac | grep -E -o '[0-9][.][0-9.]+')
 cwd=$(pwd)
 target="$tmpdir/utf8regex-$version/"
-hg archive "$target"
+hg archive --config 'ui.archivemeta=false' "$target"
 cd "$target"
 set -x
 libtoolize -q -c
