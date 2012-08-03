@@ -1,4 +1,4 @@
-AC_PREREQ([2.63])
+AC_PREREQ([2.59])
 AC_INIT([utf8regex], [0.2.7], [jwilk@jwilk.net])
 AC_CONFIG_MACRO_DIR([m4])
 
