@@ -8,5 +8,4 @@ AC_PROG_INSTALL
 LT_INIT([win32-dll])
 
 AC_CONFIG_FILES([Makefile])
-
 AC_OUTPUT
