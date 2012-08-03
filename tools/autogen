@@ -1,0 +1,8 @@
+#!/bin/sh
+set -x -e
+${LIBTOOLIZE:-libtoolize} -q -c
+${ACLOCAL:-aclocal} -I m4 --install
+${AUTOCONF:-autoconf}
+cp /usr/share/libtool/config/install-sh .
+cp /usr/share/misc/config.sub .
+cp /usr/share/misc/config.guess .

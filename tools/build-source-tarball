@@ -9,13 +9,7 @@ target="$tmpdir/utf8regex-$version/"
 hg archive --config 'ui.archivemeta=false' "$target"
 cd "$target"
 set -x
-libtoolize -q -c
-aclocal -I m4/
-for file in install-sh config.guess config.sub
-do
-  cp "/usr/share/libtool/config/$file" .
-done
-autoconf
+"$cwd/tools/autogen"
 rm -Rf autom4te.cache
 cd ..
 tar -czf "$cwd/utf8regex-$version.tar.gz" "utf8regex-$version"
