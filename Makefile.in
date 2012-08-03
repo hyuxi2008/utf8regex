@@ -53,12 +53,11 @@ install: libutf8regex.la
 
 .PHONY: clean
 clean:
-	$(RM) *.o *.la *.lo test$(EXEEXT)
-	$(RM) -R .libs/
+	rm -f *.o *.la *.lo test$(EXEEXT)
+	rm -rf .libs/
 
 .PHONY: distclean
 distclean: clean
-	$(RM) Makefile config.log config.status
-	$(RM) -R autom4te.cache
+	rm -f Makefile config.log config.status
 
 # vim:ts=4 sw=4 noet
