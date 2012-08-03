@@ -23,23 +23,23 @@ includedir = @includedir@
 # needed for $(LIBTOOL):
 top_builddir = @top_builddir@
 
-H_FILES = $(wildcard *.h)
-C_FILES = $(wildcard reg*.c)
-O_FILES = regex.o utf8re-wchar.o
-LO_FILES = $(O_FILES:.o=.lo)
+h_files = $(wildcard *.h)
+c_files = $(wildcard reg*.c)
+o_files = regex.o utf8re-wchar.o
+lo_files = $(o_files:.o=.lo)
 
 .PHONY: all
 all: libutf8regex.la test$(EXEEXT)
 
-regex.o: $(C_FILES) $(H_FILES)
+regex.o: $(c_files) $(h_files)
 
 %.lo: %.c
 	$(LTCOMPILE.c) $(^) -o $(@)
 
-libutf8regex.la: $(LO_FILES)
+libutf8regex.la: $(lo_files)
 	$(LTLINK.c) $(DLLFLAGS) $(^) -o $(@)
 
-test.o: test.c $(H_FILES)
+test.o: test.c $(h_files)
 
 test$(EXEEXT): test.o libutf8regex.la
 	$(LTLINK.c) $(^) -o $(@)
