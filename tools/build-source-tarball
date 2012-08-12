@@ -6,11 +6,12 @@ tmpdir=$(mktemp -d)
 version=$(grep AC_INIT configure.ac | grep -E -o '[0-9][.][0-9.]+')
 cwd=$(pwd)
 target="$tmpdir/utf8regex-$version/"
-hg archive --config 'ui.archivemeta=false' "$target"
+hg archive "$target"
 cd "$target"
 set -x
 "$cwd/tools/autogen"
 rm -Rf autom4te.cache
+rm -rf .hg*
 cd ..
 tar -czf "$cwd/utf8regex-$version.tar.gz" "utf8regex-$version"
 
