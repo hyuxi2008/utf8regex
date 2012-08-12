@@ -10,7 +10,7 @@ hg archive "$target"
 cd "$target"
 set -x
 "$cwd/tools/autogen"
-rm -Rf autom4te.cache
+rm -rf autom4te.cache
 rm -rf .hg*
 cd ..
 tar -czf "$cwd/utf8regex-$version.tar.gz" "utf8regex-$version"
