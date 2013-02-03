@@ -1,1 +1,15 @@
+* The library is still using some locale-dependent functions:
+
+  + __ctype_b_loc
+  + __ctype_tolower_loc
+  + __ctype_toupper_loc
+  + iswalnum
+  + iswctype
+  + iswlower
+  + strcasecmp
+  + towlower
+  + towupper
+  + wcscoll
+  + wctype
+
 * Use the DFA decoder: http://bjoern.hoehrmann.de/utf-8/decoder/dfa
