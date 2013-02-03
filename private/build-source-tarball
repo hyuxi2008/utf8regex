@@ -9,7 +9,7 @@ target="$tmpdir/utf8regex-$version/"
 hg archive "$target"
 cd "$target"
 set -x
-"$cwd/tools/autogen"
+"$cwd/private/autogen"
 rm -rf autom4te.cache
 rm -rf .hg*
 cd ..
