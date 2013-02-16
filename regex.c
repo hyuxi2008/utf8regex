@@ -18,6 +18,10 @@
    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
    02111-1307 USA.  */
 
+/* Modifications for the utf8regex port:
+ * Copyright © 2009, 2010 Jakub Wilk <jwilk@jwilk.net>
+ */
+
 #define HAVE_CONFIG_H 1
 #ifdef HAVE_CONFIG_H
 #include "config.h"
