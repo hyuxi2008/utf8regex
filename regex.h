@@ -17,6 +17,10 @@
    License along with the GNU C Library; if not, see
    <http://www.gnu.org/licenses/>.  */
 
+/* Modifications for the utf8regex port:
+ * Copyright © 2010, 2014 Jakub Wilk <jwilk@jwilk.net>
+ */
+
 #ifndef _REGEX_H
 #define _REGEX_H 1
 

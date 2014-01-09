@@ -18,7 +18,7 @@
    <http://www.gnu.org/licenses/>.  */
 
 /* Modifications for the utf8regex port:
- * Copyright © 2009, 2010 Jakub Wilk <jwilk@jwilk.net>
+ * Copyright © 2009, 2010, 2014 Jakub Wilk <jwilk@jwilk.net>
  */
 
 #include <stdint.h>
