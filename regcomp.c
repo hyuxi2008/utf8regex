@@ -18,7 +18,7 @@
    <http://www.gnu.org/licenses/>.  */
 
 /* Modifications for the utf8regex port:
- * Copyright © 2009, 2010 Jakub Wilk <jwilk@jwilk.net>
+ * Copyright © 2009, 2010, 2014 Jakub Wilk <jwilk@jwilk.net>
  */
 
 #include <stdint.h>
@@ -975,9 +975,12 @@ init_word_char (re_dfa_t *dfa)
     }
 
   for (; i < BITSET_WORDS; ++i)
-    for (int j = 0; j < BITSET_WORD_BITS; ++j, ++ch)
+  {
+    int j;
+    for (j = 0; j < BITSET_WORD_BITS; ++j, ++ch)
       if (isalnum (ch) || ch == '_')
 	dfa->word_char[i] |= (bitset_word_t) 1 << j;
+  }
 }
 
 /* Free the work area which are only used while compiling.  */
