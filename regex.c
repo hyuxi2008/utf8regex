@@ -61,8 +61,12 @@
    #undefs RE_DUP_MAX and sets it to the right value.  */
 #include <limits.h>
 
+#ifndef MIN
 #define MIN(a,b) (((a)<(b))?(a):(b))
+#endif
+#ifndef MAX
 #define MAX(a,b) (((a)>(b))?(a):(b))
+#endif
 
 #define __USE_GNU 1
 #include <regex.h>
