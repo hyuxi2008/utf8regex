@@ -1,4 +1,4 @@
-# Copyright © 2009, 2010, 2012 Jakub Wilk <jwilk@jwilk.net>
+# Copyright © 2009, 2010, 2012, 2014 Jakub Wilk <jwilk@jwilk.net>
 
 # This library is free software; you can redistribute it and/or modify
 # it under the terms of the GNU Lesser General Public License as
