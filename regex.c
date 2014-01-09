@@ -67,6 +67,11 @@
 #define __USE_GNU 1
 #include <regex.h>
 #undef __USE_GNU
+
+#ifndef __attribute_warn_unused_result__
+#define __attribute_warn_unused_result__
+#endif
+
 #include "regex_internal.h"
 
 #include "regex_internal.c"
