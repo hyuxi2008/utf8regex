@@ -22,7 +22,6 @@
  */
 
 #include <stdint.h>
-#include <gnu/option-groups.h>
 
 static reg_errcode_t re_compile_internal (regex_t *preg, const char * pattern,
 					  size_t length, reg_syntax_t syntax);
