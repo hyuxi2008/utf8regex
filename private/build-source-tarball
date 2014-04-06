@@ -2,7 +2,7 @@
 set -e
 export TAR_OPTIONS='--owner root --group root --mode a+rX --format ustar'
 export GZIP='-9n'
-tmpdir=$(mktemp -d)
+tmpdir=$(mktemp -t -d)
 version=$(grep AC_INIT configure.ac | grep -E -o '[0-9][.][0-9.]+')
 cwd=$(pwd)
 target="$tmpdir/utf8regex-$version/"
