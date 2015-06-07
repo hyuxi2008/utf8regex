@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x -e
+set -e -u -x
 ${LIBTOOLIZE:-libtoolize} -q -c
 ${ACLOCAL:-aclocal} -I m4 --install
 ${AUTOCONF:-autoconf}
