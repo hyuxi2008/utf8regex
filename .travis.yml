@@ -2,9 +2,13 @@ language: c
 compiler:
 - clang
 - gcc
-before_install:
-- sudo apt-get update
-- sudo apt-get install --no-install-recommends -y autoconf autoconf-archive automake libtool
+addons:
+  apt:
+    packages:
+    - autoconf
+    - autoconf-archive
+    - automake
+    - libtool
 script:
 - ./private/autogen
 - ./configure
