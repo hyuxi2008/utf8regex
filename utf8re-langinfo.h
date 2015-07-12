@@ -25,6 +25,6 @@ static inline char *utf8re_langinfo(int item)
   return "";
 }
 
-/* vim:set ts=2 sw=2 et: */
+/* vim:set ts=2 sts=2 sw=2 et: */
 
 #endif

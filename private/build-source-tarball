@@ -15,4 +15,4 @@ rm -rf .hg*
 cd ..
 tar -czf "$cwd/utf8regex-$version.tar.gz" "utf8regex-$version"
 
-# vim:ts=4 sw=4 et
+# vim:ts=4 sts=4 sw=4 et

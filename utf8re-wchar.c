@@ -166,4 +166,4 @@ size_t utf8re_wcrtomb(char *s, wchar_t wc, mbstate_t *ps)
   return bytes;
 }
 
-/* vim:set ts=2 sw=2 et:*/
+/* vim:set ts=2 sts=2 sw=2 et:*/
