@@ -3,6 +3,13 @@ set -e -u -x
 ${LIBTOOLIZE:-libtoolize} -q -c
 ${ACLOCAL:-aclocal} -I m4 --install
 ${AUTOCONF:-autoconf}
-cp /usr/share/libtool/config/install-sh .
-cp /usr/share/misc/config.sub .
-cp /usr/share/misc/config.guess .
+for subdir in config build-aux
+do
+    build_aux="/usr/share/libtool/$subdir"
+    [ -d "$build_aux" ] && break
+done
+for file in install-sh config.sub config.guess
+do
+    rm -f tools/$file
+    cp "$build_aux/$file" .
+done
