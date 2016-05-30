@@ -1,6 +1,4 @@
-syntax: glob
-
-*.cache/
+*.cache
 *.la
 *.lo
 *.o
