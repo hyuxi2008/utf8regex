@@ -45,6 +45,6 @@ int utf8re_mbsinit(const mbstate_t *ps);
 size_t utf8re_mbrtowc(wchar_t *pwc, const char *s, size_t n, mbstate_t *ps);
 size_t utf8re_wcrtomb(char *s, wchar_t wc, mbstate_t *ps);
 
-/* vim:set ts=2 sts=2 sw=2 et:*/
-
 #endif
+
+/* vim:set ts=2 sts=2 sw=2 et:*/
