@@ -1,3 +1,8 @@
+.. warning::
+
+   This software is a failed experiment.
+   Do not use.
+
 **utf8regex** is a `GNU libc`_ `regex library`_ port, which does not use the
 C-language `locale subsystem`_. Instead, UTF-8 encoding is used exclusively.
 
