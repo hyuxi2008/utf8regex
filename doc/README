@@ -1,4 +1,4 @@
-*utf8regex* is a `GNU libc`_ `regex library`_ port, which does not use the
+**utf8regex** is a `GNU libc`_ `regex library`_ port, which does not use the
 C-language `locale subsystem`_. Instead, UTF-8 encoding is used exclusively.
 
 Both the interface_ and the implementation_ should closely follow the POSIX
